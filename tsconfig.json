@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "lib": ["ES2017"],
+    "paths": {
+      "@constants": ["constants/index"],
+      "@configs": ["configs/index"],
+      "@guards": ["guards/index"],
+      "@dtos": ["dtos/index"],
+      "@validators": ["validators/index"],
+      "@controllers": ["controllers/index"],
+      "@services": ["services/index"],
+      "@repositories/*": ["repositories/*"],
+      "@repositories": ["repositories/index"],
+      "@transformers": ["transformers/index"],
+      "@models": ["models/index"],
+      "@utils": ["utils/index"],
+      "@modules/*": ["modules/*"],
+      "@passports": ["passports/index"],
+      "@exceptions": ["exceptions/index"],
+      "@filters": ["filters/index"]
+    }
+  },
+  "include": ["src"]
+}
