@@ -37,3 +37,4 @@ lerna-debug.log*
 #my ignore
 package-lock.json
 .env
+test.ts

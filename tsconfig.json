@@ -24,6 +24,7 @@
       "@constants": ["constants/index"],
       "@configs": ["configs/index"],
       "@guards": ["guards/index"],
+      "@interceptors": ["interceptors/index"],
       "@dtos": ["dtos/index"],
       "@validators": ["validators/index"],
       "@controllers": ["controllers/index"],

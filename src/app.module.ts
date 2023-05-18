@@ -15,6 +15,8 @@ import { JwtStrategy } from '@passports';
 import * as Service from '@services';
 import * as Transformer from '@transformers';
 import { Redis } from 'ioredis';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { LoggingInterceptor } from '@interceptors';
 
 const controllers = [AppController, AuthenticateController, AccountController];
 
