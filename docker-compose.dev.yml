@@ -32,7 +32,6 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       TOKEN_SECRET_KEY: ${TOKEN_SECRET_KEY}
-      HOST_NAME: ${HOST_NAME}
 
   database:
     container_name: postgres-template-database
