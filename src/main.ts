@@ -6,7 +6,6 @@ import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import morgan from 'morgan';
 import { ConfigAppService, checkDatabaseConnection } from '@configs';
 import { HttpExceptionFilter } from '@exceptions';
-import { LoggingInterceptor, TransformInterceptor } from '@interceptors';
 
 const DEFAULT_API_VERSION = '1';
 

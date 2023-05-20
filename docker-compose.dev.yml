@@ -32,6 +32,8 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       TOKEN_SECRET_KEY: ${TOKEN_SECRET_KEY}
+      CACHE_DATABASE: ${CACHE_DATABASE}
+      CACHE_TTL: ${CACHE_TTL}
 
   database:
     container_name: postgres-template-database

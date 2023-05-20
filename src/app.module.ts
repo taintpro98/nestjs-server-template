@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
+import { CacheModule } from '@nestjs/cache-manager';
 import {
   AccountController,
   AppController,
   AuthenticateController,
 } from '@controllers';
-import { ConfigAppService, configDb, configRedis } from '@configs';
+import { ConfigAppService, configCache, configDb, configRedis } from '@configs';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ObjectionModule } from '@modules/objection';
 import { REPOSITORIES } from '@constants';
@@ -15,8 +16,8 @@ import { JwtStrategy } from '@passports';
 import * as Service from '@services';
 import * as Transformer from '@transformers';
 import { Redis } from 'ioredis';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { LoggingInterceptor } from '@interceptors';
+import type { RedisClientOptions } from 'redis';
+import * as redisStore from 'cache-manager-redis-store';
 
 const controllers = [AppController, AuthenticateController, AccountController];
 
@@ -32,7 +33,7 @@ const repositories = [
     ConfigModule.forRoot({
       isGlobal: true,
       expandVariables: true,
-      load: [configDb, configAuth, configRedis],
+      load: [configDb, configAuth, configRedis, configCache],
     }),
     JwtModule.registerAsync({
       useFactory: (configService: ConfigService) => ({
@@ -44,6 +45,24 @@ const repositories = [
       isGlobal: true,
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => config.get('db'),
+      inject: [ConfigService],
+    }),
+    CacheModule.registerAsync<RedisClientOptions>({
+      isGlobal: true,
+      imports: [ConfigModule],
+      useFactory: async (config: ConfigService) => {
+        const host = config.get<string>('cache.host');
+        const port = config.get<number>('cache.port');
+        const database = config.get<string>('cache.database');
+        const ttl = config.get<number>('cache.ttl');
+
+        return {
+          store: await redisStore.redisStore({
+            url: `redis://${host}:${port}/${database}`,
+            ttl: 100,
+          }),
+        } as any;
+      },
       inject: [ConfigService],
     }),
   ],
