@@ -9,7 +9,7 @@
     "fmt": "prettier --write '{*,**/*}.{ts,tsx,js,jsx}'",
     "lint": "prettier --check '{*,**/*}.{ts,tsx,js,jsx}' && eslint",
     "lint:fix": "npm run fmt && eslint --fix",
-    "build": "nest build && cp src/configs/knex.ts dist/configs && rm -rf dist/database && cp -r src/database dist && cp -R src/assets dist",
+    "build": "nest build && cp src/configs/knex.ts dist/configs && rm -rf dist/database && cp -r src/database dist",
     "start": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/main.ts",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node main.js",
